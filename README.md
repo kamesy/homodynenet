@@ -24,7 +24,7 @@ conda activate homodynenet
 
 3. Install [QSM.m](https://github.com/kamesy/QSM.m) for QSM preprocessing.
 
-4. Download the pre-trained weights from
+4. Download the [pre-trained weights](https://github.com/kamesy/homodynenet/releases/latest).
 
 ## Usage
 
