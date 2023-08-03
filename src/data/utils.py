@@ -34,9 +34,7 @@ def crop_indices(m):
     return iz, iy, ix
 
 
-def _augment(x, hflip=True, vflip=True, rot90=True, invert=True, scale=1):
-    scale = float(scale)
-
+def _augment(x, hflip=True, vflip=True, rot90=True, invert=False):
     if x is None:
         return x
 
@@ -52,19 +50,15 @@ def _augment(x, hflip=True, vflip=True, rot90=True, invert=True, scale=1):
     if invert and x.dtype in [th.float16, th.float32, th.float64]:
         x *= -1.0
 
-    if scale != 1 and x.dtype in [th.float16, th.float32, th.float64]:
-        x *= scale
-
     return x
 
 
-def augment(*args, hflip=True, vflip=True, rot=True, invert=True, scale=True):
+def augment(*args, hflip=True, vflip=True, rot=True, invert=False):
     kw = dict(
         hflip  = hflip  and random.random() > 0.5,
         vflip  = vflip  and random.random() > 0.5,
         rot90  = rot    and random.random() > 0.5,
         invert = invert and random.random() > 0.5,
-        scale  = scale  and random.random() > 0.5 and random.uniform(0.8, 1.2),
     )
     return [_augment(x, **kw) for x in args]
 
